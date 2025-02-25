@@ -1,0 +1,280 @@
+DataSetInfo              : [Results] : Added class "Regression"
+                         : Add Tree TrackWithinCrossStripDetectorTMVA of type Regression with 43636 events
+                         : Dataset[Results] : Class index : 0  name : Regression
+Factory                  : Booking method: [1mMLP[0m
+                         : 
+MLP                      : [Results] : Create Transformation "Norm" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'XStripID1' <---> Output : variable 'XStripID1'
+                         : Input : variable 'XStripID2' <---> Output : variable 'XStripID2'
+                         : Input : variable 'YStripID1' <---> Output : variable 'YStripID1'
+                         : Input : variable 'XStripEnergy1' <---> Output : variable 'XStripEnergy1'
+                         : Input : variable 'XStripEnergy2' <---> Output : variable 'XStripEnergy2'
+                         : Input : variable 'YStripEnergy1' <---> Output : variable 'YStripEnergy1'
+                         : Input : target 'ResultPositionX' <---> Output : target 'ResultPositionX'
+                         : Input : target 'ResultPositionY' <---> Output : target 'ResultPositionY'
+                         : Input : target 'ResultDirectionX' <---> Output : target 'ResultDirectionX'
+                         : Input : target 'ResultDirectionY' <---> Output : target 'ResultDirectionY'
+MLP                      : Building Network. 
+                         : Initializing weights
+Factory                  : [1mTrain all methods[0m
+                         : Rebuilding Dataset Results
+                         : Building event vectors for type 2 Regression
+                         : Dataset[Results] :  create input formulas for tree TrackWithinCrossStripDetectorTMVA
+DataSetFactory           : [Results] : Number of events in input trees
+                         : 
+                         : Dataset[Results] : Weight renormalisation mode: "EqualNumEvents": renormalises all event classes ...
+                         : Dataset[Results] :  such that the effective (weighted) number of events in each class is the same 
+                         : Dataset[Results] :  (and equals the number of events (entries) given for class=0 )
+                         : Dataset[Results] : ... i.e. such that Sum[i=1..N_j]{w_i} = N_classA, j=classA, classB, ...
+                         : Dataset[Results] : ... (note that N_j is the sum of TRAINING events
+                         : Dataset[Results] :  ..... Testing events are not renormalised nor included in the renormalisation factor!)
+                         : Number of training and testing events
+                         : ---------------------------------------------------------------------------
+                         : Regression -- training events            : 21818
+                         : Regression -- testing events             : 21818
+                         : Regression -- training and testing events: 43636
+                         : 
+DataSetInfo              : Correlation matrix (Regression):
+                         : --------------------------------------------------------------------------------------
+                         :                XStripID1 XStripID2 YStripID1 XStripEnergy1 XStripEnergy2 YStripEnergy1
+                         :     XStripID1:    +1.000    +1.000    -0.000        +0.002        +0.007        +0.007
+                         :     XStripID2:    +1.000    +1.000    -0.000        +0.002        +0.007        +0.007
+                         :     YStripID1:    -0.000    -0.000    +1.000        +0.003        +0.004        +0.005
+                         : XStripEnergy1:    +0.002    +0.002    +0.003        +1.000        -0.067        +0.680
+                         : XStripEnergy2:    +0.007    +0.007    +0.004        -0.067        +1.000        +0.686
+                         : YStripEnergy1:    +0.007    +0.007    +0.005        +0.680        +0.686        +1.000
+                         : --------------------------------------------------------------------------------------
+DataSetFactory           : [Results] :  
+                         : 
+Factory                  : [Results] : Create Transformation "I" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'XStripID1' <---> Output : variable 'XStripID1'
+                         : Input : variable 'XStripID2' <---> Output : variable 'XStripID2'
+                         : Input : variable 'YStripID1' <---> Output : variable 'YStripID1'
+                         : Input : variable 'XStripEnergy1' <---> Output : variable 'XStripEnergy1'
+                         : Input : variable 'XStripEnergy2' <---> Output : variable 'XStripEnergy2'
+                         : Input : variable 'YStripEnergy1' <---> Output : variable 'YStripEnergy1'
+Factory                  : [Results] : Create Transformation "D" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'XStripID1' <---> Output : variable 'XStripID1'
+                         : Input : variable 'XStripID2' <---> Output : variable 'XStripID2'
+                         : Input : variable 'YStripID1' <---> Output : variable 'YStripID1'
+                         : Input : variable 'XStripEnergy1' <---> Output : variable 'XStripEnergy1'
+                         : Input : variable 'XStripEnergy2' <---> Output : variable 'XStripEnergy2'
+                         : Input : variable 'YStripEnergy1' <---> Output : variable 'YStripEnergy1'
+Factory                  : [Results] : Create Transformation "P" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'XStripID1' <---> Output : variable 'XStripID1'
+                         : Input : variable 'XStripID2' <---> Output : variable 'XStripID2'
+                         : Input : variable 'YStripID1' <---> Output : variable 'YStripID1'
+                         : Input : variable 'XStripEnergy1' <---> Output : variable 'XStripEnergy1'
+                         : Input : variable 'XStripEnergy2' <---> Output : variable 'XStripEnergy2'
+                         : Input : variable 'YStripEnergy1' <---> Output : variable 'YStripEnergy1'
+Factory                  : [Results] : Create Transformation "G" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'XStripID1' <---> Output : variable 'XStripID1'
+                         : Input : variable 'XStripID2' <---> Output : variable 'XStripID2'
+                         : Input : variable 'YStripID1' <---> Output : variable 'YStripID1'
+                         : Input : variable 'XStripEnergy1' <---> Output : variable 'XStripEnergy1'
+                         : Input : variable 'XStripEnergy2' <---> Output : variable 'XStripEnergy2'
+                         : Input : variable 'YStripEnergy1' <---> Output : variable 'YStripEnergy1'
+Factory                  : [Results] : Create Transformation "D" with events from all classes.
+                         : 
+                         : Transformation, Variable selection : 
+                         : Input : variable 'XStripID1' <---> Output : variable 'XStripID1'
+                         : Input : variable 'XStripID2' <---> Output : variable 'XStripID2'
+                         : Input : variable 'YStripID1' <---> Output : variable 'YStripID1'
+                         : Input : variable 'XStripEnergy1' <---> Output : variable 'XStripEnergy1'
+                         : Input : variable 'XStripEnergy2' <---> Output : variable 'XStripEnergy2'
+                         : Input : variable 'YStripEnergy1' <---> Output : variable 'YStripEnergy1'
+TFHandler_Factory        :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:            30.984            19.018   [            0.0000            62.000 ]
+                         :        XStripID2:            31.984            19.018   [            1.0000            63.000 ]
+                         :        YStripID1:            31.592            19.986   [            0.0000            63.000 ]
+                         :    XStripEnergy1:            835.98            723.39   [            2.8876            6987.3 ]
+                         :    XStripEnergy2:            835.64            728.63   [            2.8842            7282.0 ]
+                         :    YStripEnergy1:            1671.6            991.73   [            19.694            9006.4 ]
+                         :  ResultPositionX:        -0.0016405            2.2019   [           -3.9737            3.9441 ]
+                         :  ResultPositionY:          0.011036            2.3185   [           -3.9988            3.9916 ]
+                         : ResultDirectionX:         0.0048797           0.59665   [          -0.99994           0.99989 ]
+                         : ResultDirectionY:        0.00092263           0.53087   [          -0.99979           0.99976 ]
+                         : ---------------------------------------------------------------------------------------------------
+                         : Preparing the Decorrelation transformation...
+<WARNING>                : <GetSQRootMatrix> error in matrix diagonalization; printed S and B
+<WARNING>                : Variable "XStripID1" has zero, negative, or NaN RMS^2: -nan ==> set to zero. Please check the variable content
+<WARNING>                : Variable "XStripID2" has zero, negative, or NaN RMS^2: -nan ==> set to zero. Please check the variable content
+<WARNING>                : Variable "YStripID1" has zero, negative, or NaN RMS^2: -nan ==> set to zero. Please check the variable content
+<WARNING>                : Variable "XStripEnergy1" has zero, negative, or NaN RMS^2: -nan ==> set to zero. Please check the variable content
+<WARNING>                : Variable "XStripEnergy2" has zero, negative, or NaN RMS^2: -nan ==> set to zero. Please check the variable content
+<WARNING>                : Variable "YStripEnergy1" has zero, negative, or NaN RMS^2: -nan ==> set to zero. Please check the variable content
+TFHandler_Factory        :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:              -nan            0.0000   [       1.7977e+308      -1.7977e+308 ]
+                         :        XStripID2:              -nan            0.0000   [       1.7977e+308      -1.7977e+308 ]
+                         :        YStripID1:              -nan            0.0000   [       1.7977e+308      -1.7977e+308 ]
+                         :    XStripEnergy1:              -nan            0.0000   [       1.7977e+308      -1.7977e+308 ]
+                         :    XStripEnergy2:              -nan            0.0000   [       1.7977e+308      -1.7977e+308 ]
+                         :    YStripEnergy1:              -nan            0.0000   [       1.7977e+308      -1.7977e+308 ]
+                         :  ResultPositionX:        -0.0016405            2.2019   [           -3.9737            3.9441 ]
+                         :  ResultPositionY:          0.011036            2.3185   [           -3.9988            3.9916 ]
+                         : ResultDirectionX:         0.0048797           0.59665   [          -0.99994           0.99989 ]
+                         : ResultDirectionY:        0.00092263           0.53087   [          -0.99979           0.99976 ]
+                         : ---------------------------------------------------------------------------------------------------
+                         : Preparing the Principle Component (PCA) transformation...
+TFHandler_Factory        :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:       -1.3770e-07            1214.6   [           -2023.1            8990.1 ]
+                         :        XStripID2:       -1.3931e-07            749.96   [           -5037.5            4620.4 ]
+                         :        YStripID1:       -3.0994e-10            26.894   [           -44.166            44.822 ]
+                         :    XStripEnergy1:       -8.4288e-10            19.986   [           -32.014            31.607 ]
+                         :    XStripEnergy2:        1.5401e-11           0.31856   [           -4.4877            8.7337 ]
+                         :    YStripEnergy1:       -2.3109e-13        8.4758e-13   [       -2.3462e-11        1.1711e-11 ]
+                         :  ResultPositionX:        -0.0016405            2.2019   [           -3.9737            3.9441 ]
+                         :  ResultPositionY:          0.011036            2.3185   [           -3.9988            3.9916 ]
+                         : ResultDirectionX:         0.0048797           0.59665   [          -0.99994           0.99989 ]
+                         : ResultDirectionY:        0.00092263           0.53087   [          -0.99979           0.99976 ]
+                         : ---------------------------------------------------------------------------------------------------
+                         : Preparing the Gaussian transformation...
+                         : Preparing the Decorrelation transformation...
+TFHandler_Factory        :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:           0.29359            2.3777   [           -3.7743            10.543 ]
+                         :        XStripID2:        -0.0085988            1.2384   [           -3.8907            6.9157 ]
+                         :        YStripID1:           0.40480            2.5028   [           -5.6491            12.598 ]
+                         :    XStripEnergy1:          -0.18121            2.3136   [           -10.984            9.7708 ]
+                         :    XStripEnergy2:        -0.0044814           0.80106   [           -2.6332            4.2842 ]
+                         :    YStripEnergy1:           0.16073            1.2966   [           -2.0351            5.7307 ]
+                         :  ResultPositionX:        -0.0016405            2.2019   [           -3.9737            3.9441 ]
+                         :  ResultPositionY:          0.011036            2.3185   [           -3.9988            3.9916 ]
+                         : ResultDirectionX:         0.0048797           0.59665   [          -0.99994           0.99989 ]
+                         : ResultDirectionY:        0.00092263           0.53087   [          -0.99979           0.99976 ]
+                         : ---------------------------------------------------------------------------------------------------
+                         : Ranking input variables (method unspecific)...
+Factory                  : Train method: MLP for Regression
+                         : 
+TFHandler_MLP            :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:       -0.00051603           0.61347   [           -1.0000            1.0000 ]
+                         :        XStripID2:       -0.00051603           0.61347   [           -1.0000            1.0000 ]
+                         :        YStripID1:         0.0029072           0.63448   [           -1.0000            1.0000 ]
+                         :    XStripEnergy1:          -0.76144           0.20714   [           -1.0000            1.0000 ]
+                         :    XStripEnergy2:          -0.77120           0.20020   [           -1.0000            1.0000 ]
+                         :    YStripEnergy1:          -0.63238           0.22071   [           -1.0000            1.0000 ]
+                         :  ResultPositionX:         0.0033304           0.55619   [           -1.0000            1.0000 ]
+                         :  ResultPositionY:         0.0036659           0.58032   [           -1.0000            1.0000 ]
+                         : ResultDirectionX:         0.0049051           0.59670   [           -1.0000            1.0000 ]
+                         : ResultDirectionY:        0.00093787           0.53099   [           -1.0000            1.0000 ]
+                         : ---------------------------------------------------------------------------------------------------
+                         : Training Network
+                         : 
+                         : Inaccurate progress timing for MLP... 
+                         : Elapsed time for training with 21818 events: [1;31m192 sec[0m         
+                         : Dataset[Results] : Create results for training
+                         : Dataset[Results] : Evaluation of MLP on training sample
+                         : Dataset[Results] : Elapsed time for evaluation of 21818 events: [1;31m0.0387 sec[0m       
+                         : Create variable histograms
+                         : Create regression target histograms
+                         : Create regression average deviation
+                         : Results created
+                         : Creating xml weight file: [0;36mResults/weights/TMVARegression_MLP.weights.xml[0m
+                         : Write special histos to file: Results.root:/Results/Method_MLP/MLP
+Factory                  : Training finished
+                         : 
+Factory                  : === Destroy and recreate all methods via weight files for testing ===
+                         : 
+                         : Reading weight file: [0;36mResults/weights/TMVARegression_MLP.weights.xml[0m
+MLP                      : Building Network. 
+                         : Initializing weights
+Factory                  : [1mTest all methods[0m
+Factory                  : Test method: MLP for Regression performance
+                         : 
+                         : Dataset[Results] : Create results for testing
+                         : Dataset[Results] : Evaluation of MLP on testing sample
+                         : Dataset[Results] : Elapsed time for evaluation of 21818 events: [1;31m0.0346 sec[0m       
+                         : Create variable histograms
+                         : Create regression target histograms
+                         : Create regression average deviation
+                         : Results created
+Factory                  : [1mEvaluate all methods[0m
+                         : Evaluate regression method: MLP
+                         : TestRegression (testing)
+                         : Calculate regression for all events
+                         : Elapsed time for evaluation of 21818 events: [1;31m0.0356 sec[0m       
+                         : TestRegression (training)
+                         : Calculate regression for all events
+                         : Elapsed time for evaluation of 21818 events: [1;31m0.0356 sec[0m       
+TFHandler_MLP            :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:         0.0010054           0.61347   [           -1.0000            1.0000 ]
+                         :        XStripID2:         0.0010054           0.61347   [           -1.0000            1.0000 ]
+                         :        YStripID1:        0.00098220           0.63474   [           -1.0000            1.0000 ]
+                         :    XStripEnergy1:          -0.76303           0.20605   [           -1.0000            1.2879 ]
+                         :    XStripEnergy2:          -0.77077           0.19971   [          -0.99999           0.73809 ]
+                         :    YStripEnergy1:          -0.63326           0.21982   [           -1.0003           0.89795 ]
+                         :  ResultPositionX:         0.0047780           0.55615   [           -1.0001            1.0112 ]
+                         :  ResultPositionY:         0.0016090           0.58053   [          -0.99986            1.0020 ]
+                         : ResultDirectionX:         0.0010605           0.59681   [           -1.0000           0.99970 ]
+                         : ResultDirectionY:        -0.0045197           0.53532   [           -1.0002            1.0002 ]
+                         : ---------------------------------------------------------------------------------------------------
+TFHandler_MLP            :         Variable                Mean                RMS        [        Min                Max ]
+                         : ---------------------------------------------------------------------------------------------------
+                         :        XStripID1:         0.0010054           0.61347   [           -1.0000            1.0000 ]
+                         :        XStripID2:         0.0010054           0.61347   [           -1.0000            1.0000 ]
+                         :        YStripID1:        0.00098220           0.63474   [           -1.0000            1.0000 ]
+                         :    XStripEnergy1:          -0.76303           0.20605   [           -1.0000            1.2879 ]
+                         :    XStripEnergy2:          -0.77077           0.19971   [          -0.99999           0.73809 ]
+                         :    YStripEnergy1:          -0.63326           0.21982   [           -1.0003           0.89795 ]
+                         :  ResultPositionX:         0.0047780           0.55615   [           -1.0001            1.0112 ]
+                         :  ResultPositionY:         0.0016090           0.58053   [          -0.99986            1.0020 ]
+                         : ResultDirectionX:         0.0010605           0.59681   [           -1.0000           0.99970 ]
+                         : ResultDirectionY:        -0.0045197           0.53532   [           -1.0002            1.0002 ]
+                         : ---------------------------------------------------------------------------------------------------
+                         : 
+                         : Evaluation results ranked by smallest RMS on test sample:
+                         : ("Bias" quotes the mean deviation of the regression from true target.
+                         :  "MutInf" is the "Mutual Information" between regression and target.
+                         :  Indicated by "_T" are the corresponding "truncated" quantities ob-
+                         :  tained when removing events deviating more than 2sigma from average.)
+                         : --------------------------------------------------------------------------------------------------
+                         : --------------------------------------------------------------------------------------------------
+                         : Results              MLP            : 0.000114 0.000120   0.0604   0.0481  |  3.178  3.254
+                         : --------------------------------------------------------------------------------------------------
+                         : 
+                         : Evaluation results ranked by smallest RMS on training sample:
+                         : (overtraining check)
+                         : --------------------------------------------------------------------------------------------------
+                         : DataSet Name:         MVA Method:        <Bias>   <Bias_T>    RMS    RMS_T  |  MutInf MutInf_T
+                         : --------------------------------------------------------------------------------------------------
+                         : Results              MLP            : 0.000522 0.000808   0.0602   0.0484  |  3.171  3.250
+                         : --------------------------------------------------------------------------------------------------
+                         : 
+Dataset:Results          : Created tree 'TestTree' with 21818 events
+                         : 
+Dataset:Results          : Created tree 'TrainTree' with 21818 events
+                         : 
+Factory                  : [1mThank you for using TMVA![0m
+                         : [1mFor citation information, please visit: http://tmva.sf.net/citeTMVA.html[0m
+                         : Booking "MLP" of type "MLP" from Results/weights/TMVARegression_MLP.weights.xml.
+                         : Reading weight file: Results/weights/TMVARegression_MLP.weights.xml
+<HEADER> DataSetInfo              : [Default] : Added class "Regression"
+<HEADER> MLP                      : Building Network. 
+                         : Initializing weights
+                         : Booked classifier "MLP" of type: "MLP"
+                         : Rebuilding Dataset Default
+****************************************
+Minimizer is Minuit2 / Migrad
+Chi2                      =      197.385
+NDf                       =          176
+Edm                       =  6.12012e-10
+NCalls                    =          169
+p0                        =      185.893   +/-   1.71465     
+p1                        =      180.937   +/-   3.7242      
+p2                        =    -0.986121   +/-   0.920635    
+p3                        =     -44.0017   +/-   1.02748     
