@@ -44,7 +44,7 @@ class GeDSSDElectronTracking:
       sys.exit()
 
   # helper functions
-  def trainSegments(self, DataTree, allVars, index):
+  def trainSegments(self, DataTree, name, allVars, index):
     # Initialize TMVA
     ROOT.TMVA.Tools.Instance()
     # PART 1: Train the neural network
@@ -53,7 +53,7 @@ class GeDSSDElectronTracking:
     ResultsFile = ROOT.TFile(ResultsFileName, "RECREATE")
 
     # Create the Factory, responible for training and evaluation
-    Factory = ROOT.TMVA.Factory("TMVARegression", ResultsFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Regression")
+    Factory = ROOT.TMVA.Factory("TMVARegression_" + name, ResultsFile, "!V:!Silent:Color:DrawProgressBar:Transformations=I;D;P;G,D:AnalysisType=Regression")
 
     # Create the data loader - give it the name of the output directory
     DataLoader = ROOT.TMVA.DataLoader(self.OutputPrefix)
@@ -71,13 +71,14 @@ class GeDSSDElectronTracking:
           DataLoader.AddVariable(B.GetName(), "F")
 
     # Add the target variables:
-    DataLoader.AddTarget("ResultPositionX", "F")
-    DataLoader.AddSpectator("ResultPositionY", "F")
-    DataLoader.AddSpectator("ResultPositionZ", "F")
-    DataLoader.AddSpectator("ResultDirectionX", "F")
-    DataLoader.AddSpectator("ResultDirectionY", "F")
-    DataLoader.AddSpectator("ResultDirectionZ", "F")
+    for i in range(len(allVars)):
+      if i == index:
+        DataLoader.AddTarget(allVars[i], "F")
+      else: 
+        DataLoader.AddSpectator(allVars[i], "F")
 
+    DataLoader.AddSpectator("ResultPositionZ", "F")
+    DataLoader.AddSpectator("ResultDirectionZ", "F")
 
     # Add the regressions tree with weight = 1.0
     DataLoader.AddRegressionTree(DataTree, 1.0);
@@ -95,7 +96,6 @@ class GeDSSDElectronTracking:
     Factory.TrainAllMethods()
     Factory.TestAllMethods()
     Factory.EvaluateAllMethods()
-
 
   #train
   def train(self):
@@ -121,17 +121,20 @@ class GeDSSDElectronTracking:
       DataFile.Close();
       DataTree = NewDataTree
 
-      print("Shrunk data tree to size: {}", DataTree.GetEntries())
+    print("Shrunk data tree to size: {}", DataTree.GetEntries())
 
+    #run the training helper function
+    allVars = ["ResultPositionX", "ResultPositionY", "ResultDirectionX", "ResultDirectionY"]
+    for i in range(0): #len(allVars)
+      self.trainSegments(DataTree, allVars[i], allVars, i)
 
   #test
   def test(self):
-
     # Keeps objects otherwise removed by garbage collected in a list
     ROOTSaver = []
 
     # Create a new 2D histogram with fine binning
-    HistDistance = ROOT.TH1F("Distance", "Distance", 50, 0, 0.5)
+    HistDistance = ROOT.TH1F("Distance", "Difference in Distance in Y", 50, 0, 0.5)
     HistDistance.SetLineColor(ROOT.kGreen)
     HistDistance.SetXTitle("Distance in cm")
     HistDistance.SetYTitle("counts")
@@ -199,12 +202,10 @@ class GeDSSDElectronTracking:
       # Add the target variables:
       VariableMap["ResultPositionX"] = array.array('f', [0])
       DataTree.SetBranchAddress("ResultPositionX", VariableMap["ResultPositionX"])
+      Reader.AddSpectator("ResultPositionX", VariableMap["ResultPositionX"])
       VariableMap["ResultPositionY"] = array.array('f', [0])
       DataTree.SetBranchAddress("ResultPositionY", VariableMap["ResultPositionY"])
-      Reader.AddSpectator("ResultPositionY", VariableMap["ResultPositionY"])
-      VariableMap["ResultPositionZ"] = array.array('f', [0])
-      DataTree.SetBranchAddress("ResultPositionZ", VariableMap["ResultPositionZ"])
-      Reader.AddSpectator("ResultPositionZ", VariableMap["ResultPositionZ"])
+      # Reader.AddSpectator("ResultPositionY", VariableMap["ResultPositionY"])
 
       VariableMap["ResultDirectionX"] = array.array('f', [0])
       DataTree.SetBranchAddress("ResultDirectionX", VariableMap["ResultDirectionX"])
@@ -212,13 +213,17 @@ class GeDSSDElectronTracking:
       VariableMap["ResultDirectionY"] = array.array('f', [0])
       DataTree.SetBranchAddress("ResultDirectionY", VariableMap["ResultDirectionY"])
       Reader.AddSpectator("ResultDirectionY", VariableMap["ResultDirectionY"])
+      
+      VariableMap["ResultPositionZ"] = array.array('f', [0])
+      DataTree.SetBranchAddress("ResultPositionZ", VariableMap["ResultPositionZ"])
+      Reader.AddSpectator("ResultPositionZ", VariableMap["ResultPositionZ"])
       VariableMap["ResultDirectionZ"] = array.array('f', [0])
       DataTree.SetBranchAddress("ResultDirectionZ", VariableMap["ResultDirectionZ"])
       Reader.AddSpectator("ResultDirectionZ", VariableMap["ResultDirectionZ"])
 
 
       FileName = ROOT.TString(self.OutputPrefix)
-      FileName += "/weights/TMVARegression_BDTD.weights.xml"
+      FileName += "/weights/TMVARegression_ResultPositionY_BDTD.weights.xml"
       Reader.BookMVA("BDTD", FileName)
 
       # Create histograms of the test statistic values:
@@ -238,7 +243,7 @@ class GeDSSDElectronTracking:
         DataTree.GetEntry(x)
 
         SimID = int(VariableMap["SimulationID"][0])
-        InputPosX = VariableMap["ResultPositionX"][0]
+        InputPosX = VariableMap["ResultPositionY"][0]
         # InputPosY = VariableMap["ResultPositionY"][0]
         # InputDirX = VariableMap["ResultDirectionX"][0]
         # InputDirY = VariableMap["ResultDirectionY"][0]
@@ -279,7 +284,7 @@ class GeDSSDElectronTracking:
     
     # create a new TCanvas
     CanvasDistance = ROOT.TCanvas()
-    CanvasDistance.SetTitle("Distances")
+    CanvasDistance.SetTitle("Difference in X Distance")
     CanvasDistance.cd()
     HistDistance.Draw()
     CanvasDistance.Update()
@@ -320,5 +325,3 @@ class GeDSSDElectronTracking:
     #wait()
     print("Close the ROOT window via File -> Close!")
     ROOT.gApplication.Run()
-
-
