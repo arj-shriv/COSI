@@ -82,8 +82,8 @@ def evaluate_distance(FileName, x_model_file, y_model_file):
 
         error_x = InputPosX - predicted_x
         error_y = InputPosY - predicted_y
-        # difference.append((error_x**2 + error_y**2)**(1/2))
-        difference.append((error_x**2)**(1/2))
+        difference.append((error_x**2 + error_y**2)**(1/2))
+        # difference.append((error_x**2)**(1/2))
 
     DataFile.Close()
     return difference
