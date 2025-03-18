@@ -155,6 +155,8 @@ def evaluate_direction(FileName, x_model_file, y_model_file):
 
     n_entries = DataTree.GetEntries()
     angles = []
+    print("ResultDirectionX:", VariableMap["ResultDirectionX"])
+    print("ResultDirectionY:", VariableMap["ResultDirectionY"])
     for i in range(min(10000, n_entries)):
         DataTree.GetEntry(i)
         OutputDirX = VariableMap["ResultDirectionX"][0]
@@ -169,6 +171,7 @@ def evaluate_direction(FileName, x_model_file, y_model_file):
 
         # difference.append((error_x**2 + error_y**2)**(1/2))
         angles.append(Direction)
+        HistDirection.Fill(Direction)
 
     DataFile.Close()
     return angles
@@ -182,7 +185,6 @@ if __name__ == "__main__":
 
     # Evaluate the models
     distance = evaluate_distance(test_data_file, x_pos_file, y_pos_file)
-    direction = evaluate_direction(test_data_file, x_dir_file, y_dir_file)
 
     plt.hist(distance, bins=100, edgecolor='skyblue')
 
@@ -191,9 +193,32 @@ if __name__ == "__main__":
     plt.title('Distance vs. Count')
     plt.show()
 
-    plt.hist(direction, bins=50, edgecolor='skyblue')
-    plt.xlabel('Direction (degrees)')
-    plt.ylabel('Count')
-    plt.title('Direction vs. Count')
-    plt.show()
+    HistDirection = ROOT.TH1F("Direction", "Direction", 180, -180, 180)
+    HistDirection.SetLineColor(ROOT.kRed)
+    HistDirection.SetXTitle("Difference between real and reconstructed recoil electron direction in degrees")
+    HistDirection.SetYTitle("counts")
+    HistDirection.SetMinimum(0)
+    CanvasDirection = ROOT.TCanvas()
+    CanvasDirection.SetTitle("Direction")
+    HistDirection.Draw()
+    CanvasDirection.Update()
 
+    Direction = evaluate_direction(test_data_file, x_dir_file, y_dir_file)
+
+    # Fit
+    Fit = ROOT.TF1("Fit", "[0] + gaus(1)", -180, 180)
+    # Set initial parameters for the Gaussians
+    Fit.SetParameters(20, 2900, 0, 70)  # Initial counts for each Gaussian
+
+    # Fit the histogram with the function
+    HistDirection.Fit(Fit, "R")
+    Fit.SetLineColor(ROOT.kGreen+3)
+    Fit.Draw("SAME")
+    CanvasDirection.Update()
+    
+
+    print("\nResult:")
+    print("Peak: {}".format(Fit.GetParameter(1)))
+    print("Offset: {}".format(Fit.GetParameter(0)))
+    print("Peak/Offset: {}".format(Fit.GetParameter(1)/Fit.GetParameter(0)))
+    ROOT.gApplication.Run()
